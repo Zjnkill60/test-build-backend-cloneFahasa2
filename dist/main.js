@@ -13,7 +13,7 @@ async function bootstrap() {
     app.useGlobalPipes(new common_1.ValidationPipe());
     app.use(cookieParser());
     app.enableCors({
-        "origin": 'bookstore-clone-fahasa.vercel.app',
+        "origin": true,
         "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
         "preflightContinue": false,
         "optionsSuccessStatus": 204,

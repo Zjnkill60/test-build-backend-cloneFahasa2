@@ -24,6 +24,7 @@ let MailService = exports.MailService = class MailService {
         this.orderModel = orderModel;
         this.handleSendEmail = async (orderID, status) => {
             let order = await this.orderModel.findById({ _id: orderID });
+            console.log(process.env.BASE_URL);
             if (status == "PENDING") {
                 await this.mailerService.sendMail({
                     to: `${order?.email}`,
