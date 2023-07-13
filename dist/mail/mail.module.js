@@ -30,7 +30,7 @@ exports.MailModule = MailModule = __decorate([
                         },
                     },
                     template: {
-                        dir: ('./src/mail/templates'),
+                        dir: ('./dist/mail/templates'),
                         adapter: new handlebars_adapter_1.HandlebarsAdapter(),
                         options: {
                             strict: true,
