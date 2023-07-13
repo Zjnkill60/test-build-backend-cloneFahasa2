@@ -24,17 +24,15 @@ let MailService = exports.MailService = class MailService {
         this.orderModel = orderModel;
         this.handleSendEmail = async (orderID, status) => {
             let order = await this.orderModel.findById({ _id: orderID });
-            console.log(process.env.BASE_URL);
             let orderItem = order?.item.map(item => {
                 return {
                     id: item.id,
                     name: item.name,
                     price: item.price,
                     quantity: item.quantity,
-                    thumbnail: `https://backend-clone-fahasa2.onrender.com/${item.thumbnail}`
+                    thumbnail: `https://backend-clone-fahasa2.onrender.com/images/${item.thumbnail}`
                 };
             });
-            console.log(orderItem);
             if (status == "PENDING") {
                 await this.mailerService.sendMail({
                     to: `${order?.email}`,
