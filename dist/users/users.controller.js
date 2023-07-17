@@ -31,6 +31,9 @@ let UsersController = exports.UsersController = class UsersController {
     findOne(id) {
         return this.usersService.findOne(id);
     }
+    findDasboard() {
+        return this.usersService.findDasboard();
+    }
     update(email, updateUserDto) {
         return this.usersService.update(email, updateUserDto);
     }
@@ -59,6 +62,12 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)('/dashboard'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findDasboard", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Patch)(':id'),

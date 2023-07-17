@@ -47,6 +47,13 @@ export declare class UsersController {
             _id: import("mongoose").Types.ObjectId;
         }, never>;
     }>;
+    findDasboard(): Promise<{
+        message: string;
+        totalOrder: number;
+        totalUser: number;
+        totalProd: number;
+        totalPrice: number;
+    }>;
     update(email: string, updateUserDto: UpdateUserDto): Promise<{
         message: string;
         user: import("mongoose").UpdateWriteOpResult;

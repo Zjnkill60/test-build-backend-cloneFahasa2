@@ -26,9 +26,15 @@ import { CreateUserDto, RegisterGoogleUserDto, RegisterUserDto } from './dto/cre
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './schema/user.schema';
 import { Model } from 'mongoose';
+import { Product } from 'src/products/entities/product.entity';
+import { Order } from 'src/orders/schema/order.schema';
+import { Comment } from 'src/comments/entities/comment.entity';
 export declare class UsersService {
     private userModel;
-    constructor(userModel: Model<User>);
+    private productModel;
+    private orderModel;
+    private commentModel;
+    constructor(userModel: Model<User>, productModel: Model<Product>, orderModel: Model<Order>, commentModel: Model<Comment>);
     create(createUserDto: CreateUserDto): Promise<{
         message: string;
         user: import("mongoose").Document<unknown, {}, User> & Omit<User & {
@@ -75,4 +81,11 @@ export declare class UsersService {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
     updateOrderHistoryUser: (email: any, _id: any) => Promise<void>;
+    findDasboard(): Promise<{
+        message: string;
+        totalOrder: number;
+        totalUser: number;
+        totalProd: number;
+        totalPrice: number;
+    }>;
 }

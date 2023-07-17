@@ -19,9 +19,15 @@ const user_schema_1 = require("./schema/user.schema");
 const mongoose_2 = require("mongoose");
 const passwordHash = require("password-hash");
 const api_query_params_1 = require("api-query-params");
+const product_entity_1 = require("../products/entities/product.entity");
+const order_schema_1 = require("../orders/schema/order.schema");
+const comment_entity_1 = require("../comments/entities/comment.entity");
 let UsersService = exports.UsersService = class UsersService {
-    constructor(userModel) {
+    constructor(userModel, productModel, orderModel, commentModel) {
         this.userModel = userModel;
+        this.productModel = productModel;
+        this.orderModel = orderModel;
+        this.commentModel = commentModel;
         this.genarateHashPassword = (password) => {
             let passwordHashReturn = passwordHash.generate(password);
             return passwordHashReturn;
@@ -153,10 +159,32 @@ let UsersService = exports.UsersService = class UsersService {
             };
         }
     }
+    async findDasboard() {
+        let totalOrder = (await this.orderModel.find({})).length;
+        let totalUser = (await this.userModel.find({})).length;
+        let totalProd = (await this.productModel.find({})).length;
+        let listOrder = await this.orderModel.find({});
+        let totalPrice = 0;
+        listOrder?.forEach(item => totalPrice += item.totalPrice);
+        console.log(totalPrice);
+        return {
+            message: "Get dashboard",
+            totalOrder,
+            totalUser,
+            totalProd,
+            totalPrice
+        };
+    }
 };
 exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(user_schema_1.User.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __param(1, (0, mongoose_1.InjectModel)(product_entity_1.Product.name)),
+    __param(2, (0, mongoose_1.InjectModel)(order_schema_1.Order.name)),
+    __param(3, (0, mongoose_1.InjectModel)(comment_entity_1.Comment.name)),
+    __metadata("design:paramtypes", [mongoose_2.Model,
+        mongoose_2.Model,
+        mongoose_2.Model,
+        mongoose_2.Model])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map
