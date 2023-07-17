@@ -47,7 +47,7 @@ export declare class UsersController {
             _id: import("mongoose").Types.ObjectId;
         }, never>;
     }>;
-    update(id: string, updateUserDto: UpdateUserDto): Promise<{
+    update(email: string, updateUserDto: UpdateUserDto): Promise<{
         message: string;
         user: import("mongoose").UpdateWriteOpResult;
     }>;

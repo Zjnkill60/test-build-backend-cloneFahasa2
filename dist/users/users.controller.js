@@ -30,8 +30,8 @@ let UsersController = exports.UsersController = class UsersController {
     findOne(id) {
         return this.usersService.findOne(id);
     }
-    update(id, updateUserDto) {
-        return this.usersService.update(id, updateUserDto);
+    update(email, updateUserDto) {
+        return this.usersService.update(email, updateUserDto);
     }
     remove(id) {
         return this.usersService.remove(id);

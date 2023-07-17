@@ -53,7 +53,7 @@ export declare class UsersService {
     findByRefreshToken(refreshToken: string): Promise<import("mongoose").Document<unknown, {}, User> & Omit<User & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
-    update(id: string, updateUserDto: UpdateUserDto): Promise<{
+    update(email: string, updateUserDto: UpdateUserDto): Promise<{
         message: string;
         user: import("mongoose").UpdateWriteOpResult;
     }>;

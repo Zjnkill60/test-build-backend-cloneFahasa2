@@ -128,17 +128,16 @@ let UsersService = exports.UsersService = class UsersService {
         console.log(user);
         return user;
     }
-    async update(id, updateUserDto) {
+    async update(email, updateUserDto) {
         try {
-            let { role, password } = updateUserDto;
-            let user = await this.userModel.updateOne({ _id: id }, { $set: { role, password } });
+            let user = await this.userModel.updateOne({ email }, { $set: { ...updateUserDto } });
             return {
-                message: "update a user by id",
+                message: "update a user by email",
                 user
             };
         }
         catch (err) {
-            throw new common_1.BadRequestException("Id is correct ?");
+            throw new common_1.BadRequestException("email is correct ?");
         }
     }
     async remove(id) {
