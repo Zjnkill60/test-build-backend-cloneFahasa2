@@ -107,14 +107,14 @@ let AuthService = exports.AuthService = class AuthService {
         let verifyPassword = this.usersService.verifyHashPassword(currentPassword, user.password);
         if (verifyPassword) {
             let newHashPassword = this.usersService.genarateHashPassword(newPassword);
-            await this.usersService.update(dataUser._id, { password: newHashPassword });
+            await this.usersService.update(dataUser.email, { password: newHashPassword });
             return {
                 message: "Change password user",
                 newHashPassword
             };
         }
         else {
-            throw new common_1.BadRequestException("Password is correct ? ");
+            throw new common_1.BadRequestException("Mật khẩu cũ chưa chính xác  ? ");
         }
     }
 };
