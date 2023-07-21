@@ -119,13 +119,19 @@ let UsersService = exports.UsersService = class UsersService {
             throw new common_1.BadRequestException("id is correct ?");
         }
     }
-    async findByEmail(email) {
-        try {
-            let user = await this.userModel.findOne({ email });
-            return user;
+    async findByEmail(data) {
+        let userEmail = await this.userModel.findOne({ email: data });
+        if (userEmail) {
+            return userEmail;
         }
-        catch (err) {
-            throw new common_1.BadRequestException("email is correct ?");
+        else {
+            let userPhone = await this.userModel.findOne({ phoneNumber: data });
+            if (userPhone) {
+                return userPhone;
+            }
+            else {
+                return null;
+            }
         }
     }
     async findByRefreshToken(refreshToken) {

@@ -53,7 +53,7 @@ export declare class UsersService {
             _id: import("mongoose").Types.ObjectId;
         }, never>;
     }>;
-    findByEmail(email: string): Promise<import("mongoose").Document<unknown, {}, User> & Omit<User & {
+    findByEmail(data: string): Promise<import("mongoose").Document<unknown, {}, User> & Omit<User & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
     findByRefreshToken(refreshToken: string): Promise<import("mongoose").Document<unknown, {}, User> & Omit<User & {
