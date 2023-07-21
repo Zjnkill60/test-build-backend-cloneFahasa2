@@ -50,7 +50,7 @@ __decorate([
 ], RegisterUserDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.MinLength)(8),
+    (0, class_validator_1.MinLength)(8, { message: "Password cần ít nhất 8 kí tự" }),
     __metadata("design:type", String)
 ], RegisterUserDto.prototype, "password", void 0);
 class RegisterGoogleUserDto {
